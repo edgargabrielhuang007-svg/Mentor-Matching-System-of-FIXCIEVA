@@ -1,0 +1,19 @@
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Data backups and state
+backend/data/backups/
+backend/data/*.json
+backend/data/*backup*

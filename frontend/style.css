@@ -1,0 +1,187 @@
+/* 米色典雅风 & 华文中宋 / Times New Roman 样式系统 */
+
+:root {
+  --bg-beige: #F7F4EB;         /* 柔和米色底色 */
+  --card-beige: #FFFFFF;       /* 卡片米白 */
+  --border-beige: #E5DDCE;     /* 边框米驼色 */
+  --text-primary: #2B231D;     /* 典雅深褐色文字 */
+  --text-secondary: #6B5D52;   /* 次级文字 */
+  --accent-gold: #B45309;      /* 暖金色/琥珀色 */
+  --accent-blue: #2E5A88;      /* 雅致深蓝 */
+  --accent-rose: #C2410C;      /* 雅致红棕 */
+  --accent-green: #2E7D32;     /* 配对成功雅绿 */
+}
+
+/* 彻底杜绝 Vue 模板编译前 Mustache {{ ... }} 乱码闪烁 */
+[v-cloak] {
+  display: none !important;
+}
+
+/* 全局字体强制华文中宋与 Times New Roman */
+* {
+  box-sizing: border-box;
+}
+
+body, button, input, select, textarea, table, th, td, h1, h2, h3, h4, h5, h6, span, p, div {
+  font-family: "Times New Roman", "STZhongsong", "华文中宋", "Songti SC", "SimSun", serif !important;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-beige);
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 移动端 iOS Safari 防缩放及表单触控优化 */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important; /* 彻底防止 iOS 聚焦输入框时触发画面自动放大 */
+  }
+}
+
+/* ======================================================== */
+/* 双列立式滚轮选择器 (Dual Roller Column Picker) 专属样式 */
+/* ======================================================== */
+.dual-roller-wrapper {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.dual-roller-body {
+  height: 270px; /* 54px * 5 行 */
+  background: #FAF7F0;
+}
+
+/* 贯穿双列的横向目标框 (严格依照手绘草图) */
+.roller-horizontal-frame {
+  position: absolute;
+  top: 108px; /* 54px * 2，居中于第三行 */
+  left: 0;
+  right: 0;
+  height: 54px;
+  border-top: 2.5px solid #C28E2E;
+  border-bottom: 2.5px solid #C28E2E;
+  background: rgba(245, 230, 200, 0.4);
+  box-shadow: 0 0 16px rgba(194, 142, 46, 0.22);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.roller-frame-tag {
+  position: absolute;
+  top: -11px;
+  background: #C28E2E;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 7px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 上下羽化渐变遮罩 */
+.roller-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(250, 247, 240, 0.95), rgba(250, 247, 240, 0.6) 50%, transparent);
+  z-index: 8;
+}
+
+.roller-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(250, 247, 240, 0.95), rgba(250, 247, 240, 0.6) 50%, transparent);
+  z-index: 8;
+}
+
+/* 单个滚轮立柱容器 (隐藏原生滚动条，保留机械拨轮手感) */
+.roller-column {
+  height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.roller-column::-webkit-scrollbar {
+  display: none;
+}
+
+/* 单个候选条目 */
+.roller-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 0 8px;
+}
+
+.roller-item:hover {
+  background: rgba(235, 226, 212, 0.4);
+  opacity: 0.85;
+}
+
+.roller-item.roller-item-selected {
+  color: #1F1710 !important;
+  font-weight: bold;
+  opacity: 1 !important;
+  transform: scale(1.06);
+}
+
+.roller-item.disabled {
+  color: #A89E92 !important;
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.roller-item.disabled.roller-item-selected {
+  color: #9E9081 !important;
+  opacity: 0.7 !important;
+}
+
+/* 树状图容器与滚动层 */
+#tree-chart-scroll-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
+#tree-chart-container {
+  width: 100%;
+  min-height: 580px;
+  border-radius: 16px;
+}
+
+/* 米色典雅滚动条 */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #EFE9DE;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4C7B4;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8A892;
+}
