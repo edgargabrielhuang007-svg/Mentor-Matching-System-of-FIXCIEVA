@@ -76,7 +76,7 @@ BACKUP_DIR = os.path.join(DATA_DIR, "backups")
 STATE_FILE = os.path.join(DATA_DIR, "state.json")
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
-ADMIN_PIN = "29644781039"
+ADMIN_PIN = "admin888"
 
 # Session Token 会话持久化存储，保障服务器热更新或重启后管理员与成员登录态不失效
 SESSION_FILE = os.path.join(DATA_DIR, "sessions.json")
@@ -138,9 +138,9 @@ def get_default_state() -> Dict[str, Any]:
         for i in range(1, 21)
     ]
     return {
-        "current_round": 1,
+        "current_round": 0,
         "max_rounds": 5,
-        "status": "selecting",
+        "status": "settled",
         "settings": dict(DEFAULT_SETTINGS),
         "ministers": ministers,
         "mentees": mentees,
@@ -865,8 +865,8 @@ async def admin_reset(admin_pin: Optional[str] = Header(None), authorization: Op
     for s in STATE["mentees"]:
         s["matched_minister_id"] = None
     
-    STATE["current_round"] = 1
-    STATE["status"] = "selecting"
+    STATE["current_round"] = 0
+    STATE["status"] = "settled"
     STATE["submissions"] = {"mentees": {}, "ministers": {}}
     STATE["history"] = []
     STATE["last_settled_pairs"] = []

@@ -16,7 +16,7 @@ import random
 from collections import defaultdict, Counter
 import multiprocessing as mp
 
-DATA_DIR = "/home/ubuntu/mentor_matching_app/data"
+DATA_DIR = "/home/ubuntu/mentor_matching_app/backend/data"
 CACHE_FILE = os.path.join(DATA_DIR, "simulation_cache.json")
 REPORT_FILE = "/home/ubuntu/mentor_matching_app/全规则模拟矩阵.md"
 SCRATCH_REPORT_FILE = "/home/ubuntu/.gemini/antigravity-cli/scratch/mentor_matching_app/全规则模拟矩阵.md"
